@@ -1,0 +1,41 @@
+# --- Python cache ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# --- Virtual environments ---
+venv/
+.env/
+.venv/
+
+# --- IDE / Editor files ---
+.vscode/
+.idea/
+*.swp
+
+# --- Distribution / packaging ---
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# --- Logs and temp files ---
+*.log
+*.tmp
+*.temp
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- OS-specific ---
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# --- Environment / secrets ---
+*.env
+.env.*
