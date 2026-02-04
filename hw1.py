@@ -10,7 +10,7 @@ beta = 0.1                # roll-off / excess bandwidth factor
 lam0 = 1552e-9            # 1552 nm carrier wavelength (for labeling/context)
 
 c = 299792458.0
-fc = c / lam0             # carrier frequency (Hz), only for context
+# carrier frequency (Hz) can be computed as c/lam0 if needed (context)
 
 # ----------------------------
 # Helper: raised cosine pulse (impulse response)
@@ -173,10 +173,7 @@ plt.show()
 # -----------------------------
 # Given / specified by HW
 D_ps_nm_km = 3.3          # fiber dispersion [ps/(nm·km)]
-Rb = 32e9                 # bit rate [Hz]
-T = 1 / Rb                # symbol period [s]
-lam0 = 1552e-9            # center wavelength [m]
-c = 299792458.0
+# Note: `Rb`, `T`, `lam0`, and `c` are defined above and reused here.
 
 # Spectral width estimate (HW suggestion)
 delta_f = 1 / T           # Hz
@@ -200,7 +197,6 @@ for L in lengths_km:
 # -----------------------------   
 
 # Use your same D, lam0, c
-D_ps_nm_km = 3.3
 
 # Convert D to SI: s / m^2
 D_SI = D_ps_nm_km * 1e-12 / (1e-9 * 1e3)   # (ps -> s) / (nm -> m) / (km -> m)
