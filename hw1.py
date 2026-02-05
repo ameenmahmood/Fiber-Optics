@@ -32,7 +32,7 @@ def raised_cosine_pulse(t, T, beta):
     # Using the known limit: h = (pi/(4T)) * sinc(1/(2 beta))
     if beta > 0:
         """
-        We use 1/2*beta instead of T/(2*beta) because x = t/T
+        Use 1/2*beta instead of T/(2*beta) because x = t/T
         because the raiased cosine formula is expressed in terms of x = t/T 
         normalized time.
         """
@@ -133,7 +133,7 @@ print("P[0]   =", P0)
 print("difference =", P0 - sum_p)
 
 # ----------------------------
-# Plots (Part a deliverables)
+# Part 3a: Plots
 # ----------------------------
 
 # 1) Time-domain pulse
@@ -142,7 +142,8 @@ plt.figure()
 plt.plot(t*1e12, p)
 plt.xlabel("Time t (ps)")
 plt.ylabel("Normalized amplitude")
-plt.title(f"P3a: Raised-cosine pulse in time (Rb=32 Gbps, beta={beta}, FWHM=T≈{T*1e12:.2f} ps)")
+plt.title(f"P3(a): Time-domain raised-cosine pulse (β = {beta}, FWHM = {T*1e12:.2f} ps)")
+
 plt.grid(True)
 
 # 2) Spectrum magnitude
@@ -152,7 +153,7 @@ plt.figure()
 plt.plot(df_GHz, mag)
 plt.xlabel("Frequency offset Δf from carrier (GHz)")
 plt.ylabel("Normalized |P(Δf)|")
-plt.title("P3a: Spectrum magnitude")
+plt.title("P3(a): Spectrum magnitude |P(Δf)|")
 plt.grid(True)
 plt.xlim(-200, 200)  # adjust if you want a different view
 
@@ -162,14 +163,14 @@ plt.figure()
 plt.plot(df_GHz, phase)
 plt.xlabel("Frequency offset Δf from carrier (GHz)")
 plt.ylabel("Unwrapped phase ∠P(Δf) (rad)")
-plt.title("P3a: Spectrum phase")
+plt.title("P3(a): Spectrum phase ∠P(Δf)")
 plt.grid(True)
 plt.xlim(-200, 200)  # adjust if you want a different view
 
 plt.show()
 
 # -----------------------------
-# Part 3(b): Dispersion estimate
+# Part 3b: Dispersion estimate
 # -----------------------------
 # Given / specified by HW
 D_ps_nm_km = 3.3          # fiber dispersion [ps/(nm·km)]
@@ -193,7 +194,7 @@ for L in lengths_km:
     
     
 # -----------------------------
-# Part 3(c): Propagation with dispersion only
+# Part 3c: Propagation with dispersion only
 # -----------------------------   
 
 # Use your same D, lam0, c
@@ -205,9 +206,6 @@ D_SI = D_ps_nm_km * 1e-12 / (1e-9 * 1e3)   # (ps -> s) / (nm -> m) / (km -> m)
 beta2 = -(D_SI * lam0**2) / (2*np.pi*c)
 
 print(f"beta2 = {beta2:.3e} s^2/m")
-
-# Fiber lengths
-lengths_km = [10, 100]
 
 # Use the unshifted frequency axis f (Hz) that matches P = fft(p)
 omega = 2*np.pi*f  # rad/s
@@ -241,7 +239,7 @@ for L_km in lengths_km:
     plt.plot(t_ps, pL_real)
     plt.xlabel("Time (ps)")
     plt.ylabel("Normalized amplitude (Re{p(t)})")
-    plt.title(f"P3c: Time-domain pulse after {L_km} km (dispersion only)")
+    plt.title(f"P3(c): Time-domain pulse after {L_km} km (dispersion only)")
     plt.grid(True)
 
     # Same plot but x-axis in bit slots (T units)
@@ -249,7 +247,7 @@ for L_km in lengths_km:
     plt.plot(t_T, pL_real)
     plt.xlabel("Time (t/T) [bit slots]")
     plt.ylabel("Normalized amplitude (Re{p(t)})")
-    plt.title(f"P3c: Time-domain pulse after {L_km} km (t/T units)")
+    plt.title(f"P3(c): Time-domain pulse after {L_km} km (t/T units)")
     plt.grid(True)
 
     # -----------------------------
@@ -277,7 +275,7 @@ for L_km in lengths_km:
     plt.plot(df_GHz, phaseH_quad)
     plt.xlabel("Frequency offset Δf (GHz)")
     plt.ylabel("Phase (rad) [unwrapped, linear removed]")
-    plt.title(f"P3c: Quadratic spectral phase after {L_km} km")
+    plt.title(f"P3(c): Quadratic spectral phase after {L_km} km (linear phase removed)")
     plt.grid(True)
     plt.xlim(-200, 200)
     plt.show()
